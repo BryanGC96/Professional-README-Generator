@@ -12,4 +12,5 @@ at the end of it, the file will be automatically generated.
 ![Example image of the project running](./02-Challenge/Develop/assets/429619038_716034313849775_5811032490457702110_n.png)
 
 Made by: https://github.com/BryanGC96
+Link to the video example: https://drive.google.com/file/d/19AjZQc81J9obZuHdiwrkNrXl1LrPD4Cg/view?usp=sharing
 
