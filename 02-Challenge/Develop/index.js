@@ -11,6 +11,7 @@ const licenseOptions = [
     {name: 'Eclipse Public License 1.0', value: 'EPL 1.0'},
     {name: 'GNU GPL v3', value: 'GPLv3'},
     {name: 'ISC License (ISC)', value: 'ISC'},
+    {name: 'No License', value: ''},
 ];
 
 // TODO: Create an array of questions for user input
