@@ -61,6 +61,16 @@ function renderLicenseSection(answers) {
 function generateMarkdown(data) {
   const licenseBadge = renderLicenseBadge(data);
   const link = renderLicenseLink(data);
+  const licenseSection = renderLicenseSection(data); // keeps the data for the const
+
+  let licenseContent = "";
+  if (data.License && data.License.trim() !== ""){ // This if works in case there's not a license selected
+    licenseContent = `## License:
+  The application is covered under the license: "${data.License}", for more information about how
+  this license works, follow the link: ${link}.`;
+  } //Writes this content in case there is a license selected and pass it to the readme.
+
+
   return `# ${data.title}
   **License used:** ${licenseBadge}
 
@@ -71,7 +81,7 @@ function generateMarkdown(data) {
   - [Usage](#usage)
   - [Contributing](#contributing)
   - [Tests](#tests)
-  - [License](#license)
+  ${licenseContent ? '- [License](#license)' : ''}
   - [Contact Info](#github-profile)
 
   
@@ -88,9 +98,7 @@ function generateMarkdown(data) {
   ${data.Contributing}
   ### Tests:
   ${data.Tests}
-  ## License:
-  The application is covered under the license:"${data.License}", for more information about how
-  this license works, follow the link: ${link}.
+  ${licenseContent}
 
   ---
   ### GitHub profile:

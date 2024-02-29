@@ -85,7 +85,6 @@ function init() {
         console.log("This are the answers:");
         console.log(answers);
 
-        // const licenseBadge = renderLicenseBadge(answers.License);
         const readmeContent = generateMarkdown(answers);
 
         writeToFile('README.md', readmeContent); // Calls function to write the 'ReadMe' file.
