@@ -1,15 +1,16 @@
 // TODO: Include packages needed for this application
 const fs = require('node:fs');
 const inquirer = require('inquirer');
+const { generateMarkdown, renderLicenseBadge } = require('./utils/generateMarkdown');
 
 const licenseOptions = [
-    {name: 'Academic Free License v3.0', value: 'AFL-3.0'},
+    {name: 'Boost Software License 1.0', value: 'Boost 1.0'},
     {name: 'Apache license 2.0', value: 'Apache-2.0'},
     {name: 'Artistic license 2.0', value: 'Artistic-2.0'},
     {name: 'BSD 2-clause "Simplified" license', value: 'BSD-2-Clause'},
-    {name: 'Creative Commons license family', value: 'CC'},
-    {name: 'Educational Community License v2.0', value: 'ECL-2.0'},
-    {name: 'Open Software License 3.0', value: 'OSL-3.0'},
+    {name: 'Eclipse Public License 1.0', value: 'EPL 1.0'},
+    {name: 'GNU GPL v3', value: 'GPLv3'},
+    {name: 'ISC License (ISC)', value: 'ISC'},
 ];
 
 // TODO: Create an array of questions for user input
@@ -17,7 +18,7 @@ const questions = [
     {
         type: 'input',
         message: 'Title of the project?',
-        name: 'Title',
+        name: 'title',
     },
     {
         type: 'input',
@@ -53,12 +54,12 @@ const questions = [
     {
         type: 'input',
         message: 'GitHub Username',
-        name: 'GitHub Profile',
+        name: 'profile',
     },
     {
         type: 'input',
         message: 'Email Adress',
-        name: 'Email Adress',
+        name: 'mail',
     },
 ];
 
@@ -83,9 +84,12 @@ function init() {
         console.log("This are the answers:");
         console.log(answers);
 
-        const content = JSON.stringify(answers, null, 2); //defines the content wich the file will be created.
-        writeToFile('README.md', content); //Calls function to write the 'ReadMe' file.
-        console.log('Selected license option: ' , answers.License);
+        // const licenseBadge = renderLicenseBadge(answers.License);
+        const readmeContent = generateMarkdown(answers);
+
+        writeToFile('README.md', readmeContent); // Calls function to write the 'ReadMe' file.
+
+        module.exports.answers = answers; // Exports the answers from the inquirer
     })
     .catch((error) => {
         if (error.isTtyError) {
@@ -98,5 +102,3 @@ function init() {
 
 // Function call to initialize app
 init()     
-
-module.exports = { licenseOptions }; //Exports the license option array
